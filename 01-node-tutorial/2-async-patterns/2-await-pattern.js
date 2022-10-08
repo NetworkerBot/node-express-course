@@ -1,4 +1,6 @@
 const { readFile, writeFile } = require('fs').promises
+
+const requesting= require('request')
 // const util = require('util')
 // const readFilePromise = util.promisify(readFile)
 // const writeFilePromise = util.promisify(writeFile)
@@ -18,8 +20,18 @@ const start = async () => {
   }
 }
 
-start()
+// start()
 
+const linkBody = async() =>{
+  try{
+    const p5Js = requesting('https://p5js.org/')
+    console.log(p5Js)
+    await writeFile('../content/onTheFly.txt',JSON.stringify(p5Js.body))
+  } catch(error){
+    console.error(error)
+  }
+}
+linkBody()
 // const getText = (path) => {
 //   return new Promise((resolve, reject) => {
 //     readFile(path, 'utf8', (err, data) => {
